@@ -57,9 +57,6 @@ app.use(compression());
 // Logging middleware
 app.use(morgan("combined"));
 
-// Connect to the database
-ConnectDb();
-
 // Rate limiting middleware
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -129,10 +126,21 @@ app.use((err, req, res, next) => {
 
 // Start server
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`✅ Server is running on port ${port}`);
-  console.log(`📍 Test Sentry: http://localhost:${port}/debug-sentry`);
-});
+
+const startServer = async () => {
+  try {
+    await ConnectDb();
+    app.listen(port, () => {
+      console.log(`✅ Server is running on port ${port}`);
+      console.log(`📍 Test Sentry: http://localhost:${port}/debug-sentry`);
+    });
+  } catch (error) {
+    console.error("❌ Failed to connect to the database:", error);
+    process.exit(1);
+  }
+};
+
+startServer();
 
 // Export the app
 module.exports = app;

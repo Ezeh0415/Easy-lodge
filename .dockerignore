@@ -1,13 +1,5 @@
-# Ignore dependencies, they are installed via npm ci in the container
 node_modules
-
-# Ignore local environment files
-.env
-
-# Ignore Docker files
-Dockerfile
+npm-debug.log
+Dockerfile*
 .dockerignore
-
-# Ignore Git files
 .git
-.gitignore

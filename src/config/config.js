@@ -22,6 +22,8 @@ const configSchema = z.object({
   SENTRY_DEFAULTPII: z.boolean(),
   REDIS_URL: z.string().url(),
   NGROK_AUTHTOKEN: z.string(),
+  PAYSTACK_SECRET_KEY: z.string(),
+  PAYSTACK_PUBLIC_KEY: z.string(),
   // BASE_URL: z.string().url(),
   // MONNIFY_API_KEY: z.string(),
   // MONNIFY_SECRET_KEY: z.string(),

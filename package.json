@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Ezeh0415/Easy-lodge#readme",
   "dependencies": {
+    "@ngrok/ngrok": "^1.7.0",
     "@sentry/node": "^10.42.0",
     "bcryptjs": "^3.0.3",
     "compression": "^1.8.1",

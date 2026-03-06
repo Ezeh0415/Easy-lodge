@@ -11,6 +11,7 @@ const rateLimit = require("express-rate-limit");
 const cookieParser = require("cookie-parser");
 const routeNotFound = require("./middleware/routeNotfound.js");
 const { checkConnection: ConnectDb } = require("./config/db.js");
+const ngrok = require('@ngrok/ngrok');
 // IMPORT YOUR ROUTER (fix #1)
 const Router = require("./modules/GeneralRoute/Router.js"); // Adjust path as needed
 
@@ -134,6 +135,13 @@ const startServer = async () => {
       console.log(`✅ Server is running on port ${port}`);
       console.log(`📍 Test Sentry: http://localhost:${port}/debug-sentry`);
     });
+
+    // Get your endpoint online
+    ngrok
+      .connect({ addr: process.env.PORT, authtoken_from_env: true })
+      .then((listener) =>
+        console.log(`Ingress established at: ${listener.url()}`),
+      );
   } catch (error) {
     console.error("❌ Failed to connect to the database:", error);
     process.exit(1);

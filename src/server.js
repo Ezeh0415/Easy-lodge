@@ -11,7 +11,7 @@ const rateLimit = require("express-rate-limit");
 const cookieParser = require("cookie-parser");
 const routeNotFound = require("./middleware/routeNotfound.js");
 const { checkConnection: ConnectDb } = require("./config/db.js");
-const ngrok = require('@ngrok/ngrok');
+const ngrok = require("@ngrok/ngrok");
 // IMPORT YOUR ROUTER (fix #1)
 const Router = require("./modules/GeneralRoute/Router.js"); // Adjust path as needed
 
